@@ -10,16 +10,17 @@ class BusinessController(BaseController):
         super().__init__(business_service)
 
     @staticmethod
-    @business_bp.route('', methods=['GET'])
-    def get_all():
-        try:
-            businesses = BusinessService.get_all()
-            return BusinessController.success_response(
-                data=[b.to_dict() for b in businesses],
-                message=f'Se encontraron {len(businesses)} negocios'
-            )
-        except Exception as e:
-            return BusinessController.error_response(f'Error: {str(e)}', 500)
+@business_bp.route('', methods=['GET'])
+def get_all():
+    try:
+        # Usa la instancia del servicio, no la clase directa
+        businesses = business_service.get_all()  # business_service está inicializado arriba
+        return BusinessController.success_response(
+            data=[b.to_dict() for b in businesses],
+            message=f'Se encontraron {len(businesses)} negocios'
+        )
+    except Exception as e:
+        return BusinessController.error_response(f'Error: {str(e)}', 500)
 
     @staticmethod
     @business_bp.route('/<int:business_id>', methods=['GET'])

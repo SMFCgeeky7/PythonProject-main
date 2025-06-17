@@ -19,7 +19,7 @@ class User(db.Model):
     profilePhoto = db.Column(db.String(200), nullable=True)
 
     # Relación con Carrito (un usuario puede tener un carrito)
-    carts = db.relationship('Cart', backref='user', lazy=True, cascade='all, delete-orphan')
+    carts = db.relationship('Cart', backref='User', lazy=True, cascade='all, delete-orphan')
 
     def __repr__(self):
         return f'<User {self.firstName} {self.lastName}>'

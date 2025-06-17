@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -29,7 +30,7 @@ def create_app(config_name='default'):
     from app.controllers.cart_controller import cart_bp
     from app.controllers.category_controller import category_bp
     from app.controllers.detail_controller import detail_bp
-    from app.controllers.business_controller import business_controller_bp
+    from app.controllers.business_controller import business_bp
     from app.controllers.product_controller import product_bp
     from app.controllers.user_controller import user_bp
 
